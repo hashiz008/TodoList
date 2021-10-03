@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="todoList">
+        <!-- やりたい事入力 -->
+        <div class="flex justify-center">
+        <div class='pt-5 backTitle rounded-t-lg'>
+            <div class="flex justify-center pb-14">
+                <h1 class="text-6xl font-semibold text-white">Todo List</h1>
+            </div>
+            <div class="flex backBody pt-6 rounded-b-lg">
+                <div class="flex justify-center  mx-auto">
+                    <input class="pl-5 shadow-inner flex titleInput font-semibold text-2xl" v-model="titleInput" type="text" placeholder="taskTitle" v-bind:disabled="disabled" aria-label="Recipient's username" aria-describedby="button-addon">
+                    <i @click="createBtn" class="shadow-2xl  flex ml-10 pl-3 pt-3 hover:text-white hover:bg-blue-600  h-16 w-16 rounded-full text-4xl cursor-pointer far fa-list-alt"></i>
+                </div>
+            </div>
+
+            <!-- リストが無い時に文言表示 -->
+            <div v-if="noList" class="flex justify-center mt-10">
+                <h2 class="shadow-2xl flex justify-center text-white font-bold text-2xl pt-9 bg-yellow-500 noList rounded-3xl">まだ TODO リストがありません<h2>
+            </div>
+
+            <!-- カード詳細 -->
+            <div class="mt-10" v-for="(todo,index) in todos" v-bind:key="todo.task">
+                <div v-if="show" class="pt-8 flex justify-center bg-blue-400 h-24 rounded-xl">
+                    <div class="flex pr-12">
+                        <input class="checkBox" type="checkBox" id="check1">
+                    </div>
+                    <div class="flex pr-20 pt-1">
+                        <h5 class="font-bold text-xl">TODO {{index}}: {{todo}}</h5>
+                    </div>
+                    <div class="flex pr-8">
+                        <i @click="deleteBtn(todo)" class="shadow-2xl cursor-pointer text-3xl  pl-3 pt-2 hover:text-white hover:bg-red-500  h-12 w-12 rounded-full fas fa-trash-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
